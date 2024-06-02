@@ -80,7 +80,7 @@ export class UserService {
 
 		if (dto.password) {
 			data = { ...dto, password: await hash(dto.password) }
-		}
+		} else delete data.password
 
 		return this.prisma.user.update({ where: { id }, data, select: { email: true, name: true } })
 	}
